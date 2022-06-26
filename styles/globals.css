@@ -1,3 +1,5 @@
+@import './vars.css';
+
 html,
 body {
   padding: 0;
@@ -13,4 +15,61 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.box-card {
+  position: absolute;
+  border: 8px dashed white;
+  border-radius: 2rem;
+  z-index: 10000;
+  width: 280px;
+  height: 160px;
+  margin-top: 0.5rem;
+  margin-left: 0.7rem;
+}
+
+.message-video {
+  position: absolute;
+  content: 'Acá va a decir algo';
+  width: 280px;
+  height: 160px;
+  z-index: 10000;
+}
+
+.upload-image-doc {
+  border: 1px solid var(--principal-color);
+  background-color: var(--principal-color);
+  color: white;
+  border-radius: 8px;
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+}
+
+@media (min-width: 400px) and (max-width: 480px) {
+  .box-card {
+    width: 320px;
+    height: 170px;
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 549px) {
+  .box-card {
+    width: 350px;
+    height: 220px;
+    margin-top: 1.3rem;
+    margin-left: 3rem;
+  }
+}
+
+@media (min-width: 550px) {
+  .box-card {
+    width: 430px;
+    height: 230px;
+  }
 }
