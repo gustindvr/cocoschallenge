@@ -1,27 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import Router from 'next/router';
 
-import { Text, FormControl, Flex, Container } from '@chakra-ui/react';
+import { Text, FormControl, Spinner } from '@chakra-ui/react';
 
 import CustomHeader from '../../../atoms/CustomHeader';
 import CustomInput from '../../../atoms/CustomInput';
 import PrincipalButton from '../../../atoms/PrincipalButton';
 
-import { postNewData } from '../../../../store/Slices/dataSlice';
+import { postNewData, setDataAfip } from '../../../../store/Slices/dataSlice';
 
 const Step2 = ({ setStep2 }) => {
-  const { userData } = useSelector((state) => state.userData);
+  const [loading, setLoading] = useState(false);
+
+  const base_url = 'https://api-gateway.staging.scala.ly/afip';
 
   const { handleSubmit, register } = useForm();
   const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
+    setLoading(true);
+
     data = { ...data, step: '2 completed' };
-    console.log(data);
+
+    await axios({
+      method: 'get',
+      url: `${base_url}/ws_sr_padron_a13/getPersona?idPersona=${data?.cuit_cuil}`,
+      headers: {
+        authorization:
+          'Apikey ChTec.mnJeDQsJijJVdLZ409HHgcOnY1OnhZr4DgCvhzWebKqGnQX55M',
+      },
+    })
+      .then((response) => {
+        dispatch(setDataAfip(response.data.persona));
+      })
+      .catch((error) => console.log(error));
+
     const response = await dispatch(postNewData(data));
     if (response.payload) {
+      setLoading(false);
       setStep2(true);
     }
   };
@@ -80,8 +98,12 @@ const Step2 = ({ setStep2 }) => {
             nameRegister='date'
             label='Fecha de nacimiento'
           />
-
-          <PrincipalButton type='submit' text='Siguiente' isStep />
+          <PrincipalButton
+            isLoading={loading}
+            type='submit'
+            text='Siguiente'
+            isStep
+          />
         </FormControl>
       </form>
     </>

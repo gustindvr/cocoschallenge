@@ -76,6 +76,7 @@ const Step3 = ({ setStep3 }) => {
           <CustomInput
             type='text'
             placeholder='9no B'
+            defaultValue='-'
             register={register}
             nameRegister='apartment'
             label='Piso y/o departamento'

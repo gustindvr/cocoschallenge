@@ -18,6 +18,7 @@ const Validation = () => {
         textAlign='center'
         h='100%'
       >
+        <CustomHeader />
         {!finish ? <VideoDoc setFinish={setFinish} /> : <EndApp />}
       </Flex>
     </Container>

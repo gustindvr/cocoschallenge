@@ -15,6 +15,7 @@ const CustomInput = ({
   icon,
   label,
   isRequired,
+  defaultValue,
 }) => {
   return (
     <InputGroup my='2rem'>
@@ -27,6 +28,7 @@ const CustomInput = ({
         type={type}
         placeholder={placeholder}
         size='lg'
+        defaultValue={defaultValue}
         fontSize={{ base: '1em', md: '1.5em' }}
         isRequired={isRequired}
         p='0.4em'

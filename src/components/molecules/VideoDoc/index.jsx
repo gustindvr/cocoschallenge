@@ -69,8 +69,6 @@ const VideoDoc = ({ setFinish }) => {
 
   return (
     <Container>
-      <div className='message-video'></div>
-
       {!url ? (
         <>
           <Webcam audio={false} ref={webcamRef} />
