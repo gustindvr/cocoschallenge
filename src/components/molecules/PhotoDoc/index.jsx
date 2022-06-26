@@ -87,7 +87,7 @@ const PhotoDoc = ({ setFrontCard, setBackCard, isFront, isBack }) => {
                   Tomar Foto
                 </Button>
                 <Box mt='2rem'>
-                  <label for='file_upload' className='upload-image-doc '>
+                  <label htmlFor='file_upload' className='upload-image-doc '>
                     Upload
                   </label>
                   <input
