@@ -14,7 +14,7 @@ const PhotoDoc = ({ setFrontCard, setBackCard, isFront, isBack }) => {
   const videoConstraints = {
     width: 1280,
     height: 720,
-    facingMode: 'user',
+    facingMode: 'enviroment',
   };
 
   const sendFrontCard = async () => {
