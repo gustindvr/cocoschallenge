@@ -67,7 +67,7 @@ const Step2 = ({ setStep2 }) => {
     <>
       <CustomHeader />
       {alert && (
-        <Alert status='error' flexDirection={['column', 'row']}>
+        <Alert status='error' flexDirection={['column', 'row']} mb='1rem'>
           <AlertTitle>Error en ingreso de información</AlertTitle>
           <AlertDescription mt='2rem'>
             Parece que hubo un error, por favor complete nuevamente el
