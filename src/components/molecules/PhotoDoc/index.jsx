@@ -95,7 +95,7 @@ const PhotoDoc = ({ setFrontCard, setBackCard, isFront, isBack }) => {
                 </Button>
                 <Box mt='2rem'>
                   <label htmlFor='file_upload' className='upload-image-doc '>
-                    Upload
+                    Subir foto
                   </label>
                   <input
                     id='file_upload'
