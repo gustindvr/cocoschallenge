@@ -47,6 +47,13 @@ const Step5 = ({ setStep5 }) => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   return (
     <>
       <CustomHeader />

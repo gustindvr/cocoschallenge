@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
-import { Text, FormControl, Spinner } from '@chakra-ui/react';
+import {
+  Text,
+  FormControl,
+  Alert,
+  AlertTitle,
+  AlertDescription,
+  Link,
+} from '@chakra-ui/react';
 
 import CustomHeader from '../../../atoms/CustomHeader';
 import CustomInput from '../../../atoms/CustomInput';
@@ -13,6 +20,7 @@ import { postNewData, setDataAfip } from '../../../../store/Slices/dataSlice';
 
 const Step2 = ({ setStep2 }) => {
   const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState(false);
 
   const base_url = 'https://api-gateway.staging.scala.ly/afip';
 
@@ -34,19 +42,42 @@ const Step2 = ({ setStep2 }) => {
     })
       .then((response) => {
         dispatch(setDataAfip(response.data.persona));
+        dispatch(postNewData(data));
+        setLoading(false);
+        setStep2(true);
       })
-      .catch((error) => console.log(error));
-
-    const response = await dispatch(postNewData(data));
-    if (response.payload) {
-      setLoading(false);
-      setStep2(true);
-    }
+      .catch((error) => {
+        console.log(error);
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+        setAlert(true);
+      });
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
 
   return (
     <>
       <CustomHeader />
+      {alert && (
+        <Alert status='error' flexDirection={['column', 'row']}>
+          <AlertTitle>Error en ingreso de información</AlertTitle>
+          <AlertDescription mt='2rem'>
+            Parece que hubo un error, por favor complete nuevamente el
+            formulario
+          </AlertDescription>
+          <Link href='/steps'>
+            <PrincipalButton text='Aceptar' />
+          </Link>
+        </Alert>
+      )}
 
       <Text>Datos Personales</Text>
       <form onSubmit={handleSubmit(onSubmit)}>
