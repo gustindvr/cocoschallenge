@@ -9,6 +9,7 @@ const CustomHeader = () => {
       width={{ base: 300, md: 400 }}
       height={{ base: 200, md: 300 }}
       alt='corp image'
+      mb='2rem'
     />
   );
 };

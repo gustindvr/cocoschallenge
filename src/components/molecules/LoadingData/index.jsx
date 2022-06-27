@@ -53,7 +53,7 @@ const LoadingData = () => {
             my='2rem'
           />
           {errorData && (
-            <Alert status='error' flexDirection={['column', 'row']}>
+            <Alert status='error' flexDirection={['column', 'row']} mb='1rem'>
               <AlertTitle>Error en ingreso de información</AlertTitle>
               <AlertDescription mt='2rem'>
                 No se pudo validar cierta información ingresada. Lamentablemente
