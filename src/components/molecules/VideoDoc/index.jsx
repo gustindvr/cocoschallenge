@@ -67,6 +67,13 @@ const VideoDoc = ({ setFinish }) => {
     }
   }, [recordedChunks]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   return (
     <Container>
       {!url ? (

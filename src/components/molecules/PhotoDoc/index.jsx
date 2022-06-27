@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Webcam from 'react-webcam';
 import { useDispatch } from 'react-redux';
 
@@ -33,6 +33,13 @@ const PhotoDoc = ({ setFrontCard, setBackCard, isFront, isBack }) => {
       }
     }
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
 
   return (
     <Container>

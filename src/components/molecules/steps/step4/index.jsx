@@ -46,6 +46,13 @@ const Step4 = ({ setStep4 }) => {
     }
   }, [conditions, taxOtherCountry, lawfulfunds]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   return (
     <>
       <CustomHeader />

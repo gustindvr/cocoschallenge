@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Heading, Link, Progress } from '@chakra-ui/react';
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  Heading,
+  Link,
+  Progress,
+} from '@chakra-ui/react';
 
 import CustomHeader from '../../atoms/CustomHeader';
 import PrincipalButton from '../../atoms/PrincipalButton';
 
 const LoadingData = () => {
   const [dataOK, setDataOK] = useState(false);
+  const [errorData, setErrorData] = useState(false);
 
   const data = useSelector((state) => state.userData.userData);
   const [afipData] = useSelector((state) => state.userData.afipData);
 
   useEffect(() => {
-    console.log('data', data);
-    console.log('afipData', afipData);
-
-    console.log(afipData.apellido.toLowerCase().trim());
-
-    console.log(data[1].lastsNames.toLowerCase().trim());
-    console.log(afipData.nombre.toLowerCase().trim());
-    console.log(data[1].firstsNames.toLowerCase().trim());
-    console.log(afipData.numeroDocumento.trim());
-    console.log(data[0].numberDoc.trim());
-
     if (
       afipData?.apellido.toLowerCase() == data[1].lastsNames.toLowerCase() &&
       afipData?.nombre.toLowerCase() == data[1].firstsNames.toLowerCase() &&
@@ -35,6 +32,7 @@ const LoadingData = () => {
       }, 3000);
     } else {
       console.log('no hay coincidencia');
+      setErrorData(true);
     }
   }, [afipData]);
 
@@ -54,6 +52,19 @@ const LoadingData = () => {
             borderRadius='8px'
             my='2rem'
           />
+          {errorData && (
+            <Alert status='error' flexDirection={['column', 'row']}>
+              <AlertTitle>Error en ingreso de información</AlertTitle>
+              <AlertDescription mt='2rem'>
+                No se pudo validar cierta información ingresada. Lamentablemente
+                deberás hacer el proceso de nuevo. Recordá verificar que todos
+                tus datos estén correctamente ingresados
+              </AlertDescription>
+              <Link href='/steps'>
+                <PrincipalButton text='Aceptar' />
+              </Link>
+            </Alert>
+          )}
         </>
       ) : (
         <>

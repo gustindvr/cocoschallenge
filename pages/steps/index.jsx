@@ -1,5 +1,5 @@
 import { Container, Flex } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import LoadingData from '../../src/components/molecules/LoadingData';
 import Step1 from '../../src/components/molecules/steps/step1';
