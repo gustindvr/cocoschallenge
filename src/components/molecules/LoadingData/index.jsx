@@ -1,14 +1,43 @@
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import { Heading, Link, Progress } from '@chakra-ui/react';
-import React, { useState } from 'react';
+
 import CustomHeader from '../../atoms/CustomHeader';
 import PrincipalButton from '../../atoms/PrincipalButton';
 
 const LoadingData = () => {
   const [dataOK, setDataOK] = useState(false);
 
-  setTimeout(() => {
-    setDataOK(true);
-  }, 3000);
+  const data = useSelector((state) => state.userData.userData);
+  const [afipData] = useSelector((state) => state.userData.afipData);
+
+  useEffect(() => {
+    console.log('data', data);
+    console.log('afipData', afipData);
+
+    console.log(afipData.apellido.toLowerCase().trim());
+
+    console.log(data[1].lastsNames.toLowerCase().trim());
+    console.log(afipData.nombre.toLowerCase().trim());
+    console.log(data[1].firstsNames.toLowerCase().trim());
+    console.log(afipData.numeroDocumento.trim());
+    console.log(data[0].numberDoc.trim());
+
+    if (
+      afipData?.apellido.toLowerCase() == data[1].lastsNames.toLowerCase() &&
+      afipData?.nombre.toLowerCase() == data[1].firstsNames.toLowerCase() &&
+      data[0].numberDoc == afipData?.numeroDocumento
+    ) {
+      console.log('hay coincidencia');
+      setTimeout(() => {
+        setDataOK(true);
+      }, 3000);
+    } else {
+      console.log('no hay coincidencia');
+    }
+  }, [afipData]);
+
   return (
     <>
       <CustomHeader />

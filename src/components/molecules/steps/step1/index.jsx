@@ -24,8 +24,9 @@ const Step1 = ({ setStep1 }) => {
   const [legals, setLegals] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
   const [doc, setDoc] = useState('');
+  const [dataAfip, setDataAfip] = useState();
 
-  const { userData } = useSelector((state) => state.userData);
+  const data = useSelector((state) => state.userData.userData);
 
   const { handleSubmit, register } = useForm();
   const dispatch = useDispatch();
@@ -39,8 +40,6 @@ const Step1 = ({ setStep1 }) => {
       setStep1(true);
     }
   };
-
-  console.log('dataUser', userData);
 
   useEffect(() => {
     if (legals) {

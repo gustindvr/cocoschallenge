@@ -4,6 +4,7 @@ const initialState = {
   userData: [],
   photos: [],
   video: {},
+  afipData: {},
 };
 
 export const dataSlice = createSlice({
@@ -12,6 +13,10 @@ export const dataSlice = createSlice({
   reducers: {
     postNewData: (state, action) => {
       state.userData = [...state.userData, action.payload];
+    },
+
+    setDataAfip: (state, action) => {
+      state.afipData = [action.payload];
     },
 
     obtainDocsPhotos: (state, action) => {
@@ -24,7 +29,7 @@ export const dataSlice = createSlice({
   },
 });
 
-export const { postNewData, obtainDocsPhotos, postVideoDoc } =
+export const { postNewData, obtainDocsPhotos, postVideoDoc, setDataAfip } =
   dataSlice.actions;
 
 export default dataSlice.reducer;
