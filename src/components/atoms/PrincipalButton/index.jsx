@@ -3,9 +3,11 @@ import React from 'react';
 import { Button } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
-const PrincipalButton = ({ text, isStep, disabled }) => {
+const PrincipalButton = ({ text, isStep, disabled, isLoading }) => {
   return (
     <Button
+      isLoading={isLoading}
+      loadingText='Cargando'
       type='submit'
       colorScheme='whiteAlpha'
       p={{ base: '0.5rem', sm: '1rem', md: '2rem' }}
